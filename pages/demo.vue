@@ -5,5 +5,15 @@
 <script setup>
 let demo = 'demo:' + Date.now()
 console.log('demo', demo)
-fetch('https://petstore.swagger.io/v2/pet/1', { headers: { accept: 'application/json' } })
+
+setTimeout(() => {
+    console.log('setTimeout', demo, Date.now())
+}, 100)
+
+if (process.client) {
+    // 客户端执行的代码
+    let test = await fetch('https://petstore.swagger.io/v2/store/inventory', { headers: { accept: 'application/json' } })
+    test = await test.json()
+    console.log('test', test)
+}
 </script>
